@@ -1,4 +1,4 @@
 PhoneGapBasic
 =============
 
-Basic Android PhoneGap Application
+Basic PhoneGap Application
