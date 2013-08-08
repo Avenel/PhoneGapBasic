@@ -6,19 +6,6 @@ App = Ember.Application.create();
 
 App.Router.map(function() {
   this.route('main' , { path: "/" });
-  this.route('student' , { path: "/student" });
-  this.route('aktuelles', { path: "/aktuelles" });
-  this.route('vorlesung', { path: "/vorlesung" });
-});
-
-App.AkutllesRoute = Ember.Route.extend({
-  renderTemplate: function() {
-    this.render('aktuelles', {   // the template to render
-      into: '_contentTemplate',                // the template to render into
-      outlet: 'content',              // the name of the outlet in that template
-      controller: 'AktuellesController'        // the controller to use for the template
-    });
-  }
 });
 
 // Generate Views
