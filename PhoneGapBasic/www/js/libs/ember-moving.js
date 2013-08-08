@@ -81,7 +81,7 @@ Mov = EmberMoving = Ember.Namespace.create()
 		}.property('isFixed', 'isFullScreen').cacheable(),
 
 		isFixed: true,
-		isFullsScreen: false
+		isFullScreen: false
 	});
 
 // ==========================================================================
@@ -103,7 +103,6 @@ Mov = EmberMoving = Ember.Namespace.create()
 
 	EmberMoving.HeaderView = EmberMoving.ToolbarBaseView.extend({
 		'data-role': 'header'
-
 	});
 
 // ==========================================================================

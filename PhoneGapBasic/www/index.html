@@ -15,57 +15,79 @@
   <link rel="stylesheet" href="css/style.css">
   
   <!-- JavaScript Libraries -->
-  <!-- EmberJS -->
+  
+  <!-- jQuery -->
   <script src="js/libs/jquery-1.9.1.js"></script>
+  
+  <!-- jQuery Mobile -->
+  <script src="js/libs/jquery.mobile-1.3.2.js"></script>
+  
+   <!-- EmberJS -->
   <script src="js/libs/handlebars-1.0.0-rc.4.js"></script>
   <script src="js/libs/ember-1.0.0-rc.6.1.js"></script>
   <script src="js/libs/ember-moving.js"></script>
   <script src="js/app.js"></script>
   
-  <!-- jQuery Mobile -->
-  <script src="js/libs/jquery.mobile-1.3.1.min.js"></script>
   
-  <!-- Extra Codiqa features -->
-  <script src="js/libs/codiqa.ext.js"></script>
 </head>
   
 <body>
 <!-- Home -->
-<!-- Application Template -->
+
+  <!-- Application Template -->    
 <script type="text/x-handlebars" data-template-name="main">
-<!-- Header -->
-{{#view App.HeaderView}}
+<div data-theme="a" data-role="header">
   <h1>IFakApp</h1>
+</div>
+
+{{#view App.MyView}}
+  {{partial contentTemplate}}
 {{/view}}
 
-<!-- Content -->
-{{#view App.MyView}}
-  {{outlet}}
-{{/view}}
-  
-<!-- Footer -->
 {{#view App.FooterView}}
-  <div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed">
-    <ul>
-      <li>
-        <a id="linkAktuelles" href="/aktuelles" data-transition="slide" data-theme="a" data-icon="info">
-          Aktuelles
-        </a>
-        </li>
-      <li>
-        <a id="linkStudent"  href="/student" data-transition="slide" data-theme="a" data-icon="home">
-          Student
-        </a>
-      </li>
-      <li>
-        <a id="linkVorlesung" href="/vorlesung" data-transition="slide" data-theme="a" data-icon="star">
-          Vorlesung
-        </a>
-      </li>
-    </ul>
-  </div>
+<div data-theme="a" data-role="footer" data-position="fixed">
+    <div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed">
+        <ul>
+            <li>
+                <a href="#/aktuelles" data-transition="fade" data-theme="a" data-icon="info">
+                    Aktuelles
+                </a>
+            </li>
+            <li>
+                <a href="#/student" data-transition="fade" data-theme="a" data-icon="home">
+                    Student
+                </a>
+            </li>
+            <li>
+                <a href="#/vorlesung" data-transition="fade" data-theme="a" data-icon="star">
+                    Vorlesung
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 {{/view}}
 </script>
+
+<script type="text/x-handlebars" data-template-name="_contentTemplate">
+  {{outlet content}}
+</script>
+  
+<script>
+/**
+  Swipe Test
+**/
+$(function(){
+  // Bind the swipeleftHandler callback function to the swipe event on div.box
+  $( document ).on( "swipe", swipeHandler );
+ 
+  // Callback function references the event target and adds the 'swipe' class to it
+  function swipeHandler( event ){
+    alert("swipe");
+  }
+});
+</script>
+
   
 <!-- Templates -->
 <!-- Student Template -->
@@ -93,7 +115,7 @@
             Ehrung Thilo Enters
             <span class="ui-li-count">
                 IWI
-            </span>
+             </span>
         </a>
     </li>
     <li data-theme="a">
