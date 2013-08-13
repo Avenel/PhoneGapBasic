@@ -27,8 +27,6 @@
   <script src="js/libs/ember-1.0.0-rc.6.1.js"></script>
   <script src="js/libs/ember-moving.js"></script>
   <script src="js/app.js"></script>
-  
-  
 </head>
   
 <body>
@@ -41,8 +39,12 @@
 </div>
 
 {{#view App.MyView}}
-
+  
+  {{outlet content}}
+  
 {{/view}}
+
+
 
 {{#view App.FooterView}}
 <div data-theme="a" data-role="footer" data-position="fixed">
@@ -81,7 +83,7 @@ $(function(){
   function swipeHandler( event ){
     alert("swipe");
   }
-});
+});  
 </script>
 
   
