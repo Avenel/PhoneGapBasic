@@ -34,14 +34,14 @@ App.MainAktuellesRoute = Ember.Route.extend({
 // Generate Views
 App.MyView = Mov.ContentView.extend({
   didInsertElement: function(){
-    // This callback runs before lots_of_images has rendered.
     this.scheduleMasonry();
   },
   scheduleMasonry: (function(){
     Ember.run.scheduleOnce('afterRender', this, this.applyMasonry);
   }).observes('App.renderedTemplate'),
   applyMasonry: function(){
-    $( document ).trigger( "create" );
+    // let render jquery mobile render the new content
+    $(".ui-content").trigger( "create" );
   }
 });
 

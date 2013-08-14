@@ -41,7 +41,7 @@ App.MyView = Mov.ContentView.extend({
   }).observes('App.renderedTemplate'),
   applyMasonry: function(){
     // let render jquery mobile render the new content
-    $( document ).trigger( "create" );
+    $(".ui-content").trigger( "create" );
   }
 });
 
