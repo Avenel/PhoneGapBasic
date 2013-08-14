@@ -33,6 +33,7 @@ App.MainAktuellesRoute = Ember.Route.extend({
 
 // Generate Views
 App.MyView = Mov.ContentView.extend({
+  layout: Ember.Handlebars.compile("<div id='contentWrapper'>{{yield}}</div>"),
   didInsertElement: function(){
     this.scheduleMasonry();
   },
@@ -40,8 +41,8 @@ App.MyView = Mov.ContentView.extend({
     Ember.run.scheduleOnce('afterRender', this, this.applyMasonry);
   }).observes('App.renderedTemplate'),
   applyMasonry: function(){
-    // let render jquery mobile render the new content
-    $(".ui-content").trigger( "create" );
+    // let's jquery mobile render the new content
+    $("#contentWrapper").trigger( "create" );
   }
 });
 
