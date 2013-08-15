@@ -23,12 +23,15 @@ App.MainStudentRoute = Ember.Route.extend({
 });
 
 App.MainAktuellesRoute = Ember.Route.extend({
-    renderTemplate: function() {
-      this.render('aktuelles', {
-        outlet:'content'
-      });
-      App.set('renderedTemplate', 'aktuelles');
-    }
+  model: function () {
+    return App.News.find();
+  },
+  renderTemplate: function() {
+    this.render('aktuelles', {
+      outlet:'content'
+    });
+    App.set('renderedTemplate', 'aktuelles');
+  }
 });
 
 // Generate Views
@@ -41,7 +44,7 @@ App.MyView = Mov.ContentView.extend({
     Ember.run.scheduleOnce('afterRender', this, this.applyMasonry);
   }).observes('App.renderedTemplate'),
   applyMasonry: function(){
-    // let's jquery mobile render the new content
+    // let jquery mobile render the new content
     $("#contentWrapper").trigger( "create" );
   }
 });
@@ -63,7 +66,6 @@ App.MainView = Mov.PageView.extend({
         $.mobile.changePage(this.$());
     }
 });
-
 
 // Init Page
 $(document).bind('pageinit', function(){

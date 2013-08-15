@@ -102,7 +102,8 @@ Mov = EmberMoving = Ember.Namespace.create()
 */
 
 	EmberMoving.HeaderView = EmberMoving.ToolbarBaseView.extend({
-		'data-role': 'header'
+      'data-role': 'header',
+      'data-position' : 'fixed'
 	});
 
 // ==========================================================================
