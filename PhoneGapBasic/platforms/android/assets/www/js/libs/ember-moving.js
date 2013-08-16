@@ -26,7 +26,7 @@
 Mov = EmberMoving = Ember.Namespace.create()
 
 	EmberMoving.MobileBaseView = Ember.View.extend({
-		attributeBindings:['data-role', 'data-theme'],
+		attributeBindings:['data-role', 'data-theme','data-tap-toggle'],
 		'data-theme': 'a'
 	});
 
@@ -102,7 +102,9 @@ Mov = EmberMoving = Ember.Namespace.create()
 */
 
 	EmberMoving.HeaderView = EmberMoving.ToolbarBaseView.extend({
-		'data-role': 'header'
+      'data-role': 'header',
+      'data-position' : 'fixed',
+      'data-tap-toggle' : 'false' 
 	});
 
 // ==========================================================================
@@ -173,7 +175,7 @@ Mov = EmberMoving = Ember.Namespace.create()
 */
 
 	EmberMoving.ListItemView = EmberMoving.MobileBaseView.extend({
-		tagName: 'li'/*,
+		tagName: 'li',
 		classNames: [],
 		attributeBindings:['data-corners','data-shadow','data-inline','data-wrapperels','data-icon'],
 		'data-corners':'false',
@@ -182,8 +184,7 @@ Mov = EmberMoving = Ember.Namespace.create()
 		'data-inline':'false',
 		'data-wrapperels':'div',
 		'data-icon':'arrow-r',
-		'data-iconpos':'right'*/
-
+		'data-iconpos':'right'
 	});
 
 // ==========================================================================

@@ -8,7 +8,7 @@ App.set('renderedTemplate', 'student');
 
 App.Router.map(function() {
   this.resource('main', { path: '/' }, function() {
-    this.route('student', { path: '/student' });
+    this.route('student');
     this.route('aktuelles');
   });
 });
@@ -23,12 +23,18 @@ App.MainStudentRoute = Ember.Route.extend({
 });
 
 App.MainAktuellesRoute = Ember.Route.extend({
-    renderTemplate: function() {
-      this.render('aktuelles', {
-        outlet:'content'
-      });
-      App.set('renderedTemplate', 'aktuelles');
-    }
+  model: function(){
+    return App.News.find();
+  },
+  setupController: function(controller, model){
+    controller.set('content', model);
+  },
+  renderTemplate: function() {
+    this.render('aktuelles', {
+      outlet:'content'
+    });
+    App.set('renderedTemplate', 'aktuelles');
+  }
 });
 
 // Generate Views
@@ -41,7 +47,7 @@ App.MyView = Mov.ContentView.extend({
     Ember.run.scheduleOnce('afterRender', this, this.applyMasonry);
   }).observes('App.renderedTemplate'),
   applyMasonry: function(){
-    // let's jquery mobile render the new content
+    // let jquery mobile render the new content
     $("#contentWrapper").trigger( "create" );
   }
 });
@@ -64,7 +70,6 @@ App.MainView = Mov.PageView.extend({
     }
 });
 
-
 // Init Page
 $(document).bind('pageinit', function(){
     console.log('pageinit');
@@ -74,6 +79,5 @@ $(document).bind('pageinit', function(){
       console.log('main not created');
       v = App.MainView.create();
       App.set('mainView',v);
-      //v.append(); 
     }
 });

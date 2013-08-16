@@ -8,7 +8,7 @@ App.set('renderedTemplate', 'student');
 
 App.Router.map(function() {
   this.resource('main', { path: '/' }, function() {
-    this.route('student', { path: '/student' });
+    this.route('student');
     this.route('aktuelles');
   });
 });
@@ -23,8 +23,11 @@ App.MainStudentRoute = Ember.Route.extend({
 });
 
 App.MainAktuellesRoute = Ember.Route.extend({
-  model: function () {
+  model: function(){
     return App.News.find();
+  },
+  setupController: function(controller, model){
+    controller.set('content', model);
   },
   renderTemplate: function() {
     this.render('aktuelles', {
@@ -76,6 +79,5 @@ $(document).bind('pageinit', function(){
       console.log('main not created');
       v = App.MainView.create();
       App.set('mainView',v);
-      //v.append(); 
     }
 });

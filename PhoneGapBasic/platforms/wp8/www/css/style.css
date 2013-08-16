@@ -2,3 +2,34 @@
 html, body {
     margin: 20px;
 }
+
+#content {
+  margin-top: 30px;
+}
+
+#contentWrapper {
+  width: 99%;
+  margin: 0 auto;
+}
+
+#footer {
+  position:absolute;
+  width: 100%;
+  bottom: 0px;
+  background-color: #f00;        
+  margin: 0px;
+  padding: 0px;
+  left: 0px;
+}
+
+.ui-listview {
+  margin: 10px!important;  
+}
+
+.ui-body-a {
+  border: none!important;
+}
+
+.ui-mobile {
+  height: auto;
+}

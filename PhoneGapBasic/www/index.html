@@ -31,6 +31,7 @@
   <script src="js/app.js"></script>
   <script src="js/models/store.js"></script>
   <script src="js/models/news.js"></script>
+  <script src="js/controllers/mainAktuellesController.js"></script>
 </head>
   
 <body>
@@ -38,18 +39,24 @@
 
   <!-- Application Template -->    
 <script type="text/x-handlebars" data-template-name="main">
-<div data-theme="a" data-role="header" data-positon="fixed">
+<div id="header">
+<!-- <div data-theme="a" data-role="header" data-positon="fixed"> -->
+{{#view App.HeaderView}}
   <h1>IFakApp - Faster?</h1>
+{{/view}}
 </div>
 
+<div id="content">
 {{#view App.MyView}}
   
   {{outlet content}}
   
 {{/view}}
+</div>
 
 
 
+<div id="footer">
 {{#view App.FooterView}}
 <div data-theme="a" data-role="footer" data-position="fixed">
     <div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed">
@@ -73,6 +80,7 @@
     </div>
 </div>
 {{/view}}
+</div>
 </script>
   
 <script>
@@ -88,6 +96,13 @@ $(function(){
     alert("swipe");
   }
 });  
+  
+  // For IE...
+  document.addEventListener("DOMContentLoaded", function () {
+    var div = document.querySelector("#footer");
+    //div.style.top = (div.offsetTop + div.offsetHeight) + "px";
+  });
+  
 </script>
 
   
@@ -103,7 +118,7 @@ $(function(){
 <h1>
     Schwarzes Brett
 </h1>
-{{#collection App.ListView contentBinding="controller"}}
+{{#collection App.ListView contentBinding="controller.content"}}
   <a href="#">
       <h3>{{title}}</h3>
       <span class="ui-li-count">

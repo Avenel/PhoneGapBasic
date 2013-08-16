@@ -26,8 +26,12 @@
   <script src="js/libs/handlebars-1.0.0-rc.4.js"></script>
   <!-- <script src="js/libs/ember-1.0.0-rc.7.min.js"></script> -->
   <script src="js/libs/ember-1.0.0-rc.6.1.js"></script>
+  <script src="js/libs/ember-data-latest.js"></script>
   <script src="js/libs/ember-moving.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/models/store.js"></script>
+  <script src="js/models/news.js"></script>
+  <script src="js/controllers/mainAktuellesController.js"></script>
 </head>
   
 <body>
@@ -35,18 +39,24 @@
 
   <!-- Application Template -->    
 <script type="text/x-handlebars" data-template-name="main">
-<div data-theme="a" data-role="header">
+<div id="header">
+<!-- <div data-theme="a" data-role="header" data-positon="fixed"> -->
+{{#view App.HeaderView}}
   <h1>IFakApp - Faster?</h1>
+{{/view}}
 </div>
 
+<div id="content">
 {{#view App.MyView}}
   
   {{outlet content}}
   
 {{/view}}
+</div>
 
 
 
+<div id="footer">
 {{#view App.FooterView}}
 <div data-theme="a" data-role="footer" data-position="fixed">
     <div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed">
@@ -70,6 +80,7 @@
     </div>
 </div>
 {{/view}}
+</div>
 </script>
   
 <script>
@@ -85,6 +96,13 @@ $(function(){
     alert("swipe");
   }
 });  
+  
+  // For IE...
+  document.addEventListener("DOMContentLoaded", function () {
+    var div = document.querySelector("#footer");
+    div.style.top = (div.offsetTop + div.offsetHeight) + "px";
+  });
+  
 </script>
 
   
@@ -100,48 +118,14 @@ $(function(){
 <h1>
     Schwarzes Brett
 </h1>
-<ul data-role="listview" data-divider-theme="a" data-filter="true" data-filter-placeholder="Suche etwas ..." data-inset="true">
-    <li data-theme="a">
-        <a href="#page1" data-transition="slide">
-            Neuer Koch
-            <span class="ui-li-count">
-                Mensa
-            </span>
-        </a>
-    </li>
-    <li data-theme="a">
-        <a href="#page1" data-transition="slide">
-            Ehrung Thilo Enters
-            <span class="ui-li-count">
-                IWI
-             </span>
-        </a>
-    </li>
-    <li data-theme="a">
-        <a href="#page1" data-transition="slide">
-            Kanzlerin wird 50
-            <span class="ui-li-count">
-                R
-            </span>
-        </a>
-    </li>
-    <li data-theme="a">
-        <a href="#page1" data-transition="slide">
-            Werden wir alle dümmer?
-            <span class="ui-li-count">
-                IWI
-            </span>
-        </a>
-    </li>
-    <li data-theme="a">
-        <a href="#page1" data-transition="slide">
-            Reinigungspersonal vermisst Tasche
-            <span class="ui-li-count">
-                IWI
-            </span>
-        </a>
-    </li>
-</ul>
+{{#collection App.ListView contentBinding="controller.content"}}
+  <a href="#">
+      <h3>{{title}}</h3>
+      <span class="ui-li-count">
+            {{organisation}}
+      </span>
+  </a>
+{{/collection}}
 </script>
     
 </body>
