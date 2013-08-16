@@ -13,6 +13,12 @@ App.Router.map(function() {
   });
 });
 
+App.MainRoute = Ember.Route.extend({
+  redirect: function() {
+    this.transitionTo('main.aktuelles');
+  }
+});
+
 App.MainStudentRoute = Ember.Route.extend({
     renderTemplate: function() {
       this.render('student', {

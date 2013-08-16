@@ -40,7 +40,6 @@
   <!-- Application Template -->    
 <script type="text/x-handlebars" data-template-name="main">
 <div id="header">
-<!-- <div data-theme="a" data-role="header" data-positon="fixed"> -->
 {{#view App.HeaderView}}
   <h1>IFakApp - Faster?</h1>
 {{/view}}
@@ -59,14 +58,16 @@
 <div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed" data-tap-toggle="false">
       <ul>
           <li>
-              <a href="#/aktuelles" data-transition="none" data-theme="a" data-icon="info">
+              <!-- <a href="#/aktuelles" data-transition="none" data-theme="a" data-icon="info" class="ui-btn-active ui-state-persist">
                   Aktuelles
-              </a>
+              </a> -->
+              {{#linkTo 'main.aktuelles'}}Aktuelles{{/linkTo}}
           </li>
           <li>
-              <a href="#/student" data-transition="none" data-theme="a" data-icon="home">
+              <!-- <a href="#/student" data-transition="none" data-theme="a" data-icon="home">
                   Student
-              </a>
+              </a>-->
+              {{#linkTo 'main.student'}}Student{{/linkTo}}
           </li>
           <li>
               <a href="#/vorlesung" data-transition="none" data-theme="a" data-icon="star">
