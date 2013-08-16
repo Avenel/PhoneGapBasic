@@ -56,31 +56,25 @@
 
 
 
-<div id="footer">
-{{#view App.FooterView}}
-<div data-theme="a" data-role="footer" data-position="fixed">
-    <div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed">
-        <ul>
-            <li>
-                <a href="#/aktuelles" data-transition="none" data-theme="a" data-icon="info">
-                    Aktuelles
-                </a>
-            </li>
-            <li>
-                <a href="#/student" data-transition="none" data-theme="a" data-icon="home">
-                    Student
-                </a>
-            </li>
-            <li>
-                <a href="#/vorlesung" data-transition="none" data-theme="a" data-icon="star">
-                    Vorlesung
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-{{/view}}
-</div>
+<div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed" data-tap-toggle="false">
+      <ul>
+          <li>
+              <a href="#/aktuelles" data-transition="none" data-theme="a" data-icon="info">
+                  Aktuelles
+              </a>
+          </li>
+          <li>
+              <a href="#/student" data-transition="none" data-theme="a" data-icon="home">
+                  Student
+              </a>
+          </li>
+          <li>
+              <a href="#/vorlesung" data-transition="none" data-theme="a" data-icon="star">
+                  Vorlesung
+              </a>
+          </li>
+      </ul>
+  </div>
 </script>
   
 <script>
@@ -95,14 +89,25 @@ $(function(){
   function swipeHandler( event ){
     alert("swipe");
   }
-});  
   
-  // For IE...
-  document.addEventListener("DOMContentLoaded", function () {
-    var div = document.querySelector("#footer");
-    div.style.top = (div.offsetTop + div.offsetHeight) + "px";
-  });
+  if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+    var msViewportStyle = document.createElement("style");
+    msViewportStyle.appendChild(
+      document.createTextNode(
+        "@-ms-viewport{width:auto!important}"
+      )
+    );
+    msViewportStyle.appendChild(
+      document.createTextNode(
+        "@-ms-viewport{height:device-height!important}"
+      )
+    );
+    document.getElementsByTagName("head")[0].
+      appendChild(msViewportStyle);
+  }
+});
   
+
 </script>
 
   

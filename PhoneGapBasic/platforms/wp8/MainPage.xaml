@@ -40,6 +40,4 @@
                    x:Name="CordovaView" 
                    VerticalAlignment="Stretch" />
     </Grid>
-
 </phone:PhoneApplicationPage>
-

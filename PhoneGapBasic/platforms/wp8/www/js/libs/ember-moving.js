@@ -26,7 +26,7 @@
 Mov = EmberMoving = Ember.Namespace.create()
 
 	EmberMoving.MobileBaseView = Ember.View.extend({
-		attributeBindings:['data-role', 'data-theme','data-tap-toggle'],
+		attributeBindings:['data-role', 'data-theme', 'data-tap-toggle'],
 		'data-theme': 'a'
 	});
 
@@ -104,7 +104,7 @@ Mov = EmberMoving = Ember.Namespace.create()
 	EmberMoving.HeaderView = EmberMoving.ToolbarBaseView.extend({
       'data-role': 'header',
       'data-position' : 'fixed',
-      'data-tap-toggle' : 'false' 
+      'data-tap-toggle' : 'false'
 	});
 
 // ==========================================================================
