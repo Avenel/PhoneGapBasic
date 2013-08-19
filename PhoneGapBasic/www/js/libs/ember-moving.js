@@ -229,14 +229,6 @@ Mov = EmberMoving = Ember.Namespace.create()
     }.observes('content.length')
 });
 
-
-/**
-  NavBar Link
-*/
-EmberMoving.NavBarLinkView = Ember.LinkView.extend({
-  attributeBindings: ["title", "href", "data-icon"]
-})
-
 // ==========================================================================
 // Project:  Ember - JQ Mobile
 // Copyright: ©2012 Tolbard and contributors.

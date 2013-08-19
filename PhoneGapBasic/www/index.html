@@ -37,7 +37,7 @@
 <body>
 <!-- Home -->
 
-  <!-- Application Template -->    
+<!-- Application Template -->    
 <script type="text/x-handlebars" data-template-name="main">
 <div id="header">
 {{#view App.HeaderView}}
@@ -58,13 +58,13 @@
 <div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed" data-tap-toggle="false">
       <ul>
           <li>
-              {{#linkTo 'main.aktuelles'}}Aktuelles{{/linkTo}}
+              {{#linkTo 'main.aktuelles' data-icon='info'}}Aktuelles{{/linkTo}}
           </li>
           <li>
-              {{#linkTo 'main.student'}}Aktuelles{{/linkTo}}
+              {{#linkTo 'main.student' data-icon='home'}}Student{{/linkTo}}
           </li>
           <li>
-              {{#linkTo 'main.vorlesung'}}Vorlesung{{/linkTo}}
+              {{#linkTo 'main.vorlesung' data-icon='star'}}Vorlesung{{/linkTo}}
           </li>
       </ul>
   </div>
@@ -100,7 +100,6 @@ $(function(){
   }
 });
   
-
 </script>
 
   

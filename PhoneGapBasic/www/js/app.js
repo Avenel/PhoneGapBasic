@@ -77,7 +77,10 @@ App.MainView = Mov.PageView.extend({
     }
 });
 
-App.NavBarLinkView = Mov.NavBarLinkView.extend({
+
+// Customize Link, so one can define an icon
+Ember.LinkView.reopen({
+  attributeBindings: ["data-icon"]
 });
 
 // Init Page

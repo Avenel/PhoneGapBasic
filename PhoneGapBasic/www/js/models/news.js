@@ -41,5 +41,75 @@ App.News.FIXTURES = [
    content: 'inside content here',
    organisation: 'IWI',
    date: '2013-08-15'
+ },
+ {
+   id: 6, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
+ },
+ {
+   id: 7, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
+ },
+ {
+   id: 8, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
+ },
+ {
+   id: 9, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
+ },
+ {
+   id: 10, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
+ },
+ {
+   id: 11, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
+ },
+ {
+   id: 12, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
+ },
+ {
+   id: 13, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
+ },
+ {
+   id: 14, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
+ },
+ {
+   id: 15, 
+   title: 'Reinigungspersonal vermisst Tasche', 
+   content: 'inside content here',
+   organisation: 'IWI',
+   date: '2013-08-15'
  }
 ];

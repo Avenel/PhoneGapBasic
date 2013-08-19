@@ -10,6 +10,7 @@ App.Router.map(function() {
   this.resource('main', { path: '/' }, function() {
     this.route('student');
     this.route('aktuelles');
+    this.route('vorlesung');
   });
 });
 
@@ -76,6 +77,9 @@ App.MainView = Mov.PageView.extend({
     }
 });
 
+App.NavBarLinkView = Mov.NavBarLinkView.extend({
+});
+
 // Init Page
 $(document).bind('pageinit', function(){
     console.log('pageinit');
@@ -87,3 +91,4 @@ $(document).bind('pageinit', function(){
       App.set('mainView',v);
     }
 });
+

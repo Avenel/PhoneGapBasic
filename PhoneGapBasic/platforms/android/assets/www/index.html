@@ -37,7 +37,7 @@
 <body>
 <!-- Home -->
 
-  <!-- Application Template -->    
+<!-- Application Template -->    
 <script type="text/x-handlebars" data-template-name="main">
 <div id="header">
 {{#view App.HeaderView}}
@@ -58,21 +58,13 @@
 <div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed" data-tap-toggle="false">
       <ul>
           <li>
-              <!-- <a href="#/aktuelles" data-transition="none" data-theme="a" data-icon="info" class="ui-btn-active ui-state-persist">
-                  Aktuelles
-              </a> -->
               {{#linkTo 'main.aktuelles'}}Aktuelles{{/linkTo}}
           </li>
           <li>
-              <!-- <a href="#/student" data-transition="none" data-theme="a" data-icon="home">
-                  Student
-              </a>-->
               {{#linkTo 'main.student'}}Student{{/linkTo}}
           </li>
           <li>
-              <a href="#/vorlesung" data-transition="none" data-theme="a" data-icon="star">
-                  Vorlesung
-              </a>
+              {{#linkTo 'main.vorlesung'}}Vorlesung{{/linkTo}}
           </li>
       </ul>
   </div>
@@ -106,6 +98,10 @@ $(function(){
     document.getElementsByTagName("head")[0].
       appendChild(msViewportStyle);
   }
+  
+  document.addEventListener("mousemove", function(e){
+    e.preventDefault();
+  });
 });
   
 
