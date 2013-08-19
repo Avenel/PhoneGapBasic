@@ -204,7 +204,7 @@ Mov = EmberMoving = Ember.Namespace.create()
 */
 
 	EmberMoving.ListView = Ember.CollectionView.extend({
-    attributeBindings: ['data-role', 'data-theme'],
+    attributeBindings: ['data-role', 'data-theme', 'height'],
     'data-role':'listview',
     tagName: 'ul',
     itemViewClass: Ember.ListItemView,
@@ -228,14 +228,6 @@ Mov = EmberMoving = Ember.Namespace.create()
         });
     }.observes('content.length')
 });
-
-
-/**
-  NavBar Link
-*/
-EmberMoving.NavBarLinkView = Ember.LinkView.extend({
-  attributeBindings: ["title", "href", "data-icon"]
-})
 
 // ==========================================================================
 // Project:  Ember - JQ Mobile

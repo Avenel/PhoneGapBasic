@@ -21,26 +21,49 @@ App.MainRoute = Ember.Route.extend({
 });
 
 App.MainStudentRoute = Ember.Route.extend({
-    renderTemplate: function() {
-      this.render('student', {
-        outlet:'content'
-      });     
-      App.set('renderedTemplate', 'student');
-    }
+  renderTemplate: function() {
+    this.render('student', {
+      outlet:'content'
+    });     
+    App.set('renderedTemplate', 'student');
+  }
 });
 
 App.MainAktuellesRoute = Ember.Route.extend({
   model: function(){
-    return App.News.find();
+    return App.News.find({ beginId: 1, endId: 8 });
   },
   setupController: function(controller, model){
-    controller.set('content', model);
+    controller.set('items', model);
   },
   renderTemplate: function() {
     this.render('aktuelles', {
       outlet:'content'
     });
     App.set('renderedTemplate', 'aktuelles');
+  },
+  events: {
+    // infinite scroll
+    more: function() {
+      // initialize maxNewsItemCount
+      var maxNewsItemCount = this.get('controller').get('maxNewsItemCount');      
+      if (maxNewsItemCount == 0) {
+        this.get('controller').set('maxNewsItemCount', 
+                                   App.News.find().content.length); 
+      }
+      
+      // if items to load exists, load them
+      var length = this.get('controller').get('newsItemCount');
+      if (length > 0) { 
+        var items = this.modelFor('main.aktuelles'),
+            addItemCount = 2;
+        
+        items = App.News.find({ beginId: 1, endId: length + addItemCount });
+        
+        this.get('controller').set('newsItemCount', length + addItemCount);
+        this.get('controller').set('items', items);
+      }
+    }
   }
 });
 
@@ -56,6 +79,31 @@ App.MyView = Mov.ContentView.extend({
   applyMasonry: function(){
     // let jquery mobile render the new content
     $("#contentWrapper").trigger( "create" );
+  },
+  
+  // infinite scroll
+  didInsertElement: function() {
+    var view = this;
+    $(window).bind("scroll", function() {
+      view.didScroll();
+    });  
+  },
+
+  willDestroyElement: function() {
+    $(window).unbind("scroll");
+  },
+
+  didScroll: function() {
+    if(this.isScrolledToBottom()) {
+      this.get('controller').send('more');
+    }
+  },
+
+  isScrolledToBottom: function() {
+    var distanceToTop = $(document).height() - $(window).height(),
+        top           = $(document).scrollTop();
+
+    return top === distanceToTop;
   }
 });
 
@@ -77,7 +125,10 @@ App.MainView = Mov.PageView.extend({
     }
 });
 
-App.NavBarLinkView = Mov.NavBarLinkView.extend({
+
+// Customize Link, so one can define an icon
+Ember.LinkView.reopen({
+  attributeBindings: ["data-icon"]
 });
 
 // Init Page

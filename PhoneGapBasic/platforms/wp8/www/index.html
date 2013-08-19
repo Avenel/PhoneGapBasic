@@ -58,13 +58,13 @@
 <div data-role="navbar" data-iconpos="top" data-fullscreen="true" data-position="fixed" data-tap-toggle="false">
       <ul>
           <li>
-              {{#linkTo 'main.aktuelles'}}Aktuelles{{/linkTo}}
+              {{#linkTo 'main.aktuelles' data-icon='info'}}Aktuelles{{/linkTo}}
           </li>
           <li>
-              {{#linkTo 'main.student'}}Student{{/linkTo}}
+              {{#linkTo 'main.student' data-icon='home'}}Student{{/linkTo}}
           </li>
           <li>
-              {{#linkTo 'main.vorlesung'}}Vorlesung{{/linkTo}}
+              {{#linkTo 'main.vorlesung' data-icon='star'}}Vorlesung{{/linkTo}}
           </li>
       </ul>
   </div>
@@ -98,13 +98,8 @@ $(function(){
     document.getElementsByTagName("head")[0].
       appendChild(msViewportStyle);
   }
-  
-  document.addEventListener("mousemove", function(e){
-    e.preventDefault();
-  });
 });
   
-
 </script>
 
   
@@ -120,7 +115,7 @@ $(function(){
 <h1>
     Schwarzes Brett
 </h1>
-{{#collection App.ListView contentBinding="controller.content"}}
+{{#collection App.ListView contentBinding="controller.items"}}
   <a href="#">
       <h3>{{title}}</h3>
       <span class="ui-li-count">
