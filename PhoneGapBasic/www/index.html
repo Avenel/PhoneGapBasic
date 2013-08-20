@@ -107,7 +107,7 @@ $(function(){
 {{else}}
     {{#if canLoadMore}}
         <div id="loaderActionView" {{action "more" target="controller" }}
-        onClick="$('#loader').html('<p><b>Loading...</b></p>'); $('#loader').trigger('create');$(this).hide();"><p><b>click to load more items</b></p></div>
+        onClick="$('#loaderText').html('<p><b>Loading...</b></p>'); $('#loaderText').trigger('create');$(this).hide();"><p><b>click to load more items</b></p></div>
     {{else}}
         <div id="loaderActionView"><i>no more items</i></div>
     {{/if}}
