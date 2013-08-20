@@ -2,9 +2,6 @@
 App.Store = DS.Store.extend({
  adapter: DS.FixtureAdapter.extend({
         queryFixtures: function(fixtures, query, type) {
-            console.log(query);
-            console.log(type);
-          
             return fixtures.filter(function(item) {
               // Between IDs
               if (item["id"] >= query["beginId"] &&

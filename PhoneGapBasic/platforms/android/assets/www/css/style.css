@@ -16,7 +16,7 @@ body {
 /* Content */
 #content {
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 90px;
 }
 
 #contentWrapper {
@@ -31,3 +31,30 @@ body {
 .ui-body-a {
   border: none!important;
 }
+
+#loaderBar {
+  display: block; 
+  background-color: #FAFAFA;
+  color: #2489ce;
+  text-align: center;
+  width: 98%;
+  margin: 0 auto;
+}
+
+#loaderActionView {
+  line-height: 64px;
+  vertical-align: middle;
+}
+
+#loaderActionView i {
+  color: #ABABAB;
+}
+
+#loaderText {
+  line-height: 64px;
+  vertical-align: middle;
+  color: #2489ce;
+}
+
+
+  

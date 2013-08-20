@@ -31,42 +31,18 @@ App.MainStudentRoute = Ember.Route.extend({
 
 App.MainAktuellesRoute = Ember.Route.extend({
   model: function(){
-    return App.News.find({ beginId: 1, endId: $(window).height()/64 });
+    // $(window).height()/64
+    return App.News.find({ beginId: 1, endId: 5 });
   },
   setupController: function(controller, model){
     controller.set('items', model);
-    controller.set('newsItemCount', $(window).height()/64);
+    controller.set('newsItemCount', 5);//$(window).height()/64);
   },
   renderTemplate: function() {
     this.render('aktuelles', {
       outlet:'content'
     });
     App.set('renderedTemplate', 'aktuelles');
-  },
-  events: {
-    // infinite scroll
-    more: function() {
-      // if items to load exists, load them
-      var length = this.controller.get('newsItemCount');
-      var maxNewsItemCount = this.controller.get('allNewsItems').content.length;      
-      if (length < maxNewsItemCount) { 
-        var allItems = this.controller.get('allNewsItems');        
-        var items = this.controller.get('items'),
-            addItemCount = 2;
-
-        // load new items
-        var result = allItems.filter(function(item, index, enumerable) {
-          if (item.id > length && item.id <= length + addItemCount) return true;
-        });
-
-        // add them to the existing items
-        result = items.toArray().concat(result.toArray());
-        
-        // refresh itemCount and items
-        this.controller.set('newsItemCount', length + addItemCount);
-        this.controller.set('items', result);
-      }
-    }
   }
 });
 
@@ -82,31 +58,6 @@ App.MyView = Mov.ContentView.extend({
   applyMasonry: function(){
     // let jquery mobile render the new content
     $("#contentWrapper").trigger( "create" );
-  },
-  
-  // infinite scroll
-  didInsertElement: function() {
-    var view = this;
-    $(window).bind("scroll", function() {
-      view.didScroll();
-    });  
-  },
-
-  willDestroyElement: function() {
-    $(window).unbind("scroll");
-  },
-
-  didScroll: function() {
-    if(this.isScrolledToBottom()) {
-      this.get('controller').send('more');
-    }
-  },
-
-  isScrolledToBottom: function() {
-    var distanceToTop = $(document).height() - $(window).height(),
-        top           = $(document).scrollTop();
-
-    return top === distanceToTop;
   }
 });
 
@@ -127,6 +78,23 @@ App.MainView = Mov.PageView.extend({
     }
 });
 
+
+App.LoadMoreView = Ember.View.extend({
+  init: function() {
+    $('#loaderActionView').bind('inview', function(isInView) {
+      if (isInView) 
+        Ember.tryInvoke(view.get('controller'), 'more');
+    });
+  },
+  templateName: 'loadMore',
+  didInsertElement: function() {
+    var view = this;
+    this.$().bind('inview', function(isInView) {
+      if (isInView) 
+        Ember.tryInvoke(view.get('controller'), 'more');
+    });
+  }
+});
 
 // Customize Link, so one can define an icon
 Ember.LinkView.reopen({

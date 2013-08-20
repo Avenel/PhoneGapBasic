@@ -70,19 +70,10 @@
   </div>
 </script>
   
+
+<!-- IE footer fix -->
 <script>
-/**
-  Swipe Test
-**/
 $(function(){
-  // Bind the swipeleftHandler callback function to the swipe event on div.box
-  $( document ).on( "swipe", swipeHandler );
- 
-  // Callback function references the event target and adds the 'swipe' class to it
-  function swipeHandler( event ){
-    alert("swipe");
-  }
-  
   if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
     var msViewportStyle = document.createElement("style");
     msViewportStyle.appendChild(
@@ -98,8 +89,7 @@ $(function(){
     document.getElementsByTagName("head")[0].
       appendChild(msViewportStyle);
   }
-});
-  
+}); 
 </script>
 
   
@@ -108,14 +98,28 @@ $(function(){
 <script type="text/x-handlebars" data-template-name="student">
 <h1>Student</h1>
 </script>
-  
+
+<!-- LoadMore Template -->
+<script type="text/x-handlebars" data-template-name="loadMore">
+<div id="loaderText"></div>
+{{#if isLoading}}
+    fetching some more stuff <img width="10" src="img/ajax-loader.gif" >
+{{else}}
+    {{#if canLoadMore}}
+        <div id="loaderActionView" {{action "more" target="controller" }}
+        onClick="$('#loader').html('<p><b>Loading...</b></p>'); $('#loader').trigger('create');$(this).hide();"><p><b>click to load more items</b></p></div>
+    {{else}}
+        <div id="loaderActionView"><i>no more items</i></div>
+    {{/if}}
+{{/if}}  
+</script>
   
 <!-- Aktuelles Template -->
 <script type="text/x-handlebars" data-template-name="aktuelles">
 <h1>
     Schwarzes Brett
 </h1>
-{{#collection App.ListView contentBinding="controller.items"}}
+{{#collection App.ListView contentBinding="items"}}
   <a href="#">
       <h3>{{title}}</h3>
       <span class="ui-li-count">
@@ -123,6 +127,9 @@ $(function(){
       </span>
   </a>
 {{/collection}}
+<div id="loaderBar">
+  {{view App.LoadMoreView}}
+</div>
 </script>
     
 </body>
