@@ -1,6 +1,8 @@
 App.MainAktuellesController = Ember.Controller.extend({
   
-  newsItemCount : 2,
-  maxNewsItemCount : 0
-  
+  init: function() {
+    this.set('allNewsItems', App.News.find());
+  },
+  newsItemCount : 8,
+  maxNewsItemCount: 15  
 });

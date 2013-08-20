@@ -55,13 +55,19 @@ App.MainAktuellesRoute = Ember.Route.extend({
       // if items to load exists, load them
       var length = this.get('controller').get('newsItemCount');
       if (length > 0) { 
-        var items = this.modelFor('main.aktuelles'),
+        var allItems = this.get('controller').get('allNewsItems');        
+        var items = this.get('controller').get('items'),
             addItemCount = 2;
         
-        items = App.News.find({ beginId: 1, endId: length + addItemCount });
+        // Result returns 0 rows :(
+        var result = allItems.filter(function(item, index, enumerable) {
+          if (item.id > length && item.id <= length + addItemCount) return true;
+        });
+
+        result = items.toArray().concat(result.toArray());
         
         this.get('controller').set('newsItemCount', length + addItemCount);
-        this.get('controller').set('items', items);
+        this.get('controller').set('items', result);
       }
     }
   }

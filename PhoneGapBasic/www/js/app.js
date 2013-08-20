@@ -31,7 +31,7 @@ App.MainStudentRoute = Ember.Route.extend({
 
 App.MainAktuellesRoute = Ember.Route.extend({
   model: function(){
-    return App.News.find({ beginId: 1, endId: 2 });
+    return App.News.find({ beginId: 1, endId: 8 });
   },
   setupController: function(controller, model){
     controller.set('items', model);
@@ -45,30 +45,23 @@ App.MainAktuellesRoute = Ember.Route.extend({
   events: {
     // infinite scroll
     more: function() {
-      // initialize maxNewsItemCount
-      var maxNewsItemCount = this.get('controller').get('maxNewsItemCount');      
-      if (maxNewsItemCount == 0) {
-        this.get('controller').set('maxNewsItemCount', 
-                                   App.News.find().content.length); 
-      }
-      
       // if items to load exists, load them
       var length = this.get('controller').get('newsItemCount');
-      if (length > 0) { 
-        var items = this.modelFor('main.aktuelles'),
+      var maxNewsItemCount = this.controller.get('maxNewsItemCount');      
+      
+      if (length < maxNewsItemCount) { 
+        var allItems = this.controller.get('allNewsItems');        
+        var items = this.controller.get('items'),
             addItemCount = 2;
+
+        var result = allItems.filter(function(item, index, enumerable) {
+          if (item.id > length && item.id <= length + addItemCount) return true;
+        });
+
+        result = items.toArray().concat(result.toArray());
         
-        // Result returns 0 rows :(
-        var result = App.News.find({ beginId: length, 
-                               endId: length + addItemCount });
-        
-        items.set('content', items.content.concat(result.content));
-        
-        /*alert(result.content.length);
-        alert(items.content.length);*/
-        
-        this.get('controller').set('newsItemCount', length + addItemCount);
-        this.get('controller').set('items', items);
+        this.controller.set('newsItemCount', length + addItemCount);
+        this.controller.set('items', result);
       }
     }
   }
