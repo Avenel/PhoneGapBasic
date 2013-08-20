@@ -46,20 +46,23 @@ App.MainAktuellesRoute = Ember.Route.extend({
     // infinite scroll
     more: function() {
       // if items to load exists, load them
-      var length = this.get('controller').get('newsItemCount');
-      var maxNewsItemCount = this.controller.get('maxNewsItemCount');      
+      var length = this.controller.get('newsItemCount');
+      var maxNewsItemCount = this.controller.get('allNewsItems').content.length;      
       
       if (length < maxNewsItemCount) { 
         var allItems = this.controller.get('allNewsItems');        
         var items = this.controller.get('items'),
             addItemCount = 2;
 
+        // load new items
         var result = allItems.filter(function(item, index, enumerable) {
           if (item.id > length && item.id <= length + addItemCount) return true;
         });
 
+        // add them to the existing items
         result = items.toArray().concat(result.toArray());
         
+        // refresh itemCount and items
         this.controller.set('newsItemCount', length + addItemCount);
         this.controller.set('items', result);
       }
