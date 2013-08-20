@@ -31,7 +31,7 @@ App.MainStudentRoute = Ember.Route.extend({
 
 App.MainAktuellesRoute = Ember.Route.extend({
   model: function(){
-    return App.News.find({ beginId: 1, endId: 8 });
+    return App.News.find({ beginId: 1, endId: $(window).height()/64 });
   },
   setupController: function(controller, model){
     controller.set('items', model);
@@ -45,29 +45,26 @@ App.MainAktuellesRoute = Ember.Route.extend({
   events: {
     // infinite scroll
     more: function() {
-      // initialize maxNewsItemCount
-      var maxNewsItemCount = this.get('controller').get('maxNewsItemCount');      
-      if (maxNewsItemCount == 0) {
-        this.get('controller').set('maxNewsItemCount', 
-                                   App.News.find().content.length); 
-      }
-      
       // if items to load exists, load them
-      var length = this.get('controller').get('newsItemCount');
-      if (length > 0) { 
-        var allItems = this.get('controller').get('allNewsItems');        
-        var items = this.get('controller').get('items'),
+      var length = this.controller.get('newsItemCount');
+      var maxNewsItemCount = this.controller.get('allNewsItems').content.length;      
+      
+      if (length < maxNewsItemCount) { 
+        var allItems = this.controller.get('allNewsItems');        
+        var items = this.controller.get('items'),
             addItemCount = 2;
-        
-        // Result returns 0 rows :(
+
+        // load new items
         var result = allItems.filter(function(item, index, enumerable) {
           if (item.id > length && item.id <= length + addItemCount) return true;
         });
 
+        // add them to the existing items
         result = items.toArray().concat(result.toArray());
         
-        this.get('controller').set('newsItemCount', length + addItemCount);
-        this.get('controller').set('items', result);
+        // refresh itemCount and items
+        this.controller.set('newsItemCount', length + addItemCount);
+        this.controller.set('items', result);
       }
     }
   }
@@ -120,7 +117,6 @@ App.FooterView = Mov.FooterView.extend({
 });
 
 App.ListView = Mov.ListView.extend({
-
 });
 
 App.MainView = Mov.PageView.extend({

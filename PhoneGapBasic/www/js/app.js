@@ -31,10 +31,11 @@ App.MainStudentRoute = Ember.Route.extend({
 
 App.MainAktuellesRoute = Ember.Route.extend({
   model: function(){
-    return App.News.find({ beginId: 1, endId: 8 });
+    return App.News.find({ beginId: 1, endId: $(window).height()/64 });
   },
   setupController: function(controller, model){
     controller.set('items', model);
+    controller.set('newsItemCount', $(window).height()/64);
   },
   renderTemplate: function() {
     this.render('aktuelles', {
@@ -48,7 +49,6 @@ App.MainAktuellesRoute = Ember.Route.extend({
       // if items to load exists, load them
       var length = this.controller.get('newsItemCount');
       var maxNewsItemCount = this.controller.get('allNewsItems').content.length;      
-      
       if (length < maxNewsItemCount) { 
         var allItems = this.controller.get('allNewsItems');        
         var items = this.controller.get('items'),
@@ -117,7 +117,6 @@ App.FooterView = Mov.FooterView.extend({
 });
 
 App.ListView = Mov.ListView.extend({
-
 });
 
 App.MainView = Mov.PageView.extend({

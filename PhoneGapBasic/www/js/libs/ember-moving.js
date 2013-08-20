@@ -204,7 +204,7 @@ Mov = EmberMoving = Ember.Namespace.create()
 */
 
 	EmberMoving.ListView = Ember.CollectionView.extend({
-    attributeBindings: ['data-role', 'data-theme', 'height'],
+    attributeBindings: ['data-role', 'data-theme', 'height', 'style'],
     'data-role':'listview',
     tagName: 'ul',
     itemViewClass: Ember.ListItemView,
