@@ -42,7 +42,7 @@ App.MainAktuellesController = Ember.Controller.extend({
       else {
         controller.set('isLoading', false);
         controller.set('canLoadMore', false);
-        $('#loader').html("");
+        $('#loaderText').html("");
       }
     }, 100);
   }
