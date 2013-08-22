@@ -22,7 +22,7 @@ App.MainAktuellesController = Ember.Controller.extend({
         
         var allItems = controller.get('allNewsItems');        
         var items = controller.get('items'),
-            addItemCount = 5;
+            addItemCount = 3;
   
         // load new items
         var result = allItems.filter(function(item, index, enumerable) {

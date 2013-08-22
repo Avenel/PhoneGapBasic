@@ -102,16 +102,12 @@ $(function(){
 <!-- LoadMore Template -->
 <script type="text/x-handlebars" data-template-name="loadMore">
 <div id="loaderText"></div>
-{{#if isLoading}}
-    fetching some more stuff <img width="10" src="img/ajax-loader.gif" >
+{{#if canLoadMore}}
+    <div id="loaderActionView" {{action "more" target="controller" }}
+    onClick="$('#loaderText').html('<p><b>Loading...</b></p>'); $('#loaderText').trigger('create');$(this).hide();"><p><b>click to load more items</b></p></div>
 {{else}}
-    {{#if canLoadMore}}
-        <div id="loaderActionView" {{action "more" target="controller" }}
-        onClick="$('#loaderText').html('<p><b>Loading...</b></p>'); $('#loaderText').trigger('create');$(this).hide();"><p><b>click to load more items</b></p></div>
-    {{else}}
-        <div id="loaderActionView"><i>no more items</i></div>
-    {{/if}}
-{{/if}}  
+    <div id="loaderActionView"><i>no more items</i></div>
+{{/if}}
 </script>
   
 <!-- Aktuelles Template -->
@@ -119,7 +115,7 @@ $(function(){
 <h1>
     Schwarzes Brett
 </h1>
-{{#collection App.ListView contentBinding="items"}}
+{{#collection App.ListView contentBinding="controller.items"}}
   <a href="#">
       <h3>{{title}}</h3>
       <span class="ui-li-count">
